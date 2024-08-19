@@ -15,28 +15,31 @@
                 <a href="about.html" class="item">About</a>
             </div>
             <div class="form">
-                <form>
+                <form id="login" name="login" onsubmit="Submit(this)">
                     <label for="username">Username: </label>
-                    <input id="username" required type="text" name="username" placeholder="Username...">
-                    <span id="usrname-error" class="error">Invalid Usrname</span>
+                    <input id="username" required type="text" name="usrname" placeholder="Username...">
+                    <span id="usrname-error" class="error">Invalid Username</span>
                     <label for="pass">Password: </label>
-                    <input id="password" required type="password" name="pass" placeholder="Password...">
+                    <input id="pass" required type="password" name="password" placeholder="Password...">
                     <span id="pass-error" class="error">Invalid Password</span>
-                    <input name="show" type="checkbox" id="show" onclick="ShowPassword()">
+                    <input name="showpass" type="checkbox" id="show" onclick="ShowPassword()">
                     <label for="show">Show Password</label>
-                    <input type="submit" value="Submit" onclick="Submit()">
+                    <input id="submit" type="submit" value="Submit">
                     <a href="forgotPassword.html" class="link">Forget Password?</a>
                     <a href="signUp.html" class="link">Don't have an account? Create one</a>
                 </form>
             </div>
         </div>
         <script>
-            function Submit() {
+            function Submit(form) {
+                //const obj = {username: form.username.value, password: form.password.value};
+                //console.log(document.forms['login'].username.value);
                 const username = document.getElementById('username').value;
-                const password = document.getElementById('password').value;
+                const password = document.getElementById('pass').value;
                 let error = false;
-                if(username === null || username === '' || username === undefined) {
-                    document.getElemenyId('usrname-error').style.display = 'block';
+                //debugger;
+                if(!username || username === '') {
+                    document.getElementById('usrname-error').style.display = 'block';
                     error = true;
                 }
                 else
@@ -49,7 +52,7 @@
                     document.getElementById('pass-error').style.display = 'none';
                 if(error)
                     return;
-                const formInput = {'username' : username, 'password' : password};
+                const formInput = {username : username, password : password};
                 const permission = Login(formInput);
                 console.log(document.getElementsByClassName('header')[0].innerHTML);
                 const header = document.getElementsByClassName('header')[0].innerHTML += '<h1>Hello</h1>'
@@ -60,7 +63,7 @@
             }
             function ShowPassword() {
                 const isChecked = document.getElementById('show').checked;
-                let paswordInput = document.getElementById('password');
+                let paswordInput = document.getElementById('pass');
                 if(isChecked)
                     paswordInput.type = 'text';
                 else
