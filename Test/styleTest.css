@@ -73,13 +73,13 @@ html {
     height: 100%;
 }
 body {
-    background-image: url('cute.jpg');
+    background-image: url('resources/images/cute.jpg');
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center;
 }
 p {
-    background-color: rgb(250,235,215, 0.5);;
+    background-color: rgb(250,235,215, 0.5);
     color: black;
     margin: 20px;
     border-radius: 14px;
